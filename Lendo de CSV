@@ -1,0 +1,18 @@
+import csv
+
+dados = []
+
+with open("sensores.csv", "r") as arquivo:
+    leitor = csv.DictReader(arquivo)
+    for linha in leitor:
+        dados.append(linha)
+
+for item in dados:
+    temp = item['temperatura']
+
+    if temp == "":
+        print(f"{item['maquina']} -> ERRO")
+    elif int(temp) > 90:
+        print(f"{item['maquina']} -> ALERTA")
+    else:
+        print(f"{item['maquina']} -> OK")
